@@ -1,0 +1,41 @@
+<div class="container">
+    <form >
+      <div class="row">
+        <h1>Bienvenid@</h1>
+        <div>
+          Back office administracion de polizas
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="email">Email</label>
+        </div>
+        <div class="col-75">
+          <input type="email" id="email" name="email" placeholder="Email" [(ngModel)]="this.user.Email">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="pass">Password</label>
+        </div>
+        <div class="col-75">
+          <input type="password" id="pass" name="pass" placeholder="Password" [(ngModel)]="this.user.Password">
+        </div>
+      </div>
+
+      <div class="row">
+          <a class="col-1-4"
+          routerLink="/register">
+            Registrarse
+          </a>
+        
+      </div>
+  
+  
+      <div class="row">
+        <input type="submit" (click) = "logIn()" value="Login">
+      </div>
+    </form>
+  </div>
+
+  

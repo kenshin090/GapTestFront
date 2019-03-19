@@ -1,0 +1,106 @@
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">    
+  </button>
+  <mat-vertical-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Datos de la poliza</ng-template>
+        <p>
+        <mat-form-field>
+          <input matInput placeholder="Nombre" formControlName="firstCtrl" required [(ngModel)]="this.policy.Name"  >
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+            <input matInput placeholder="Descripcion" formControlName="firstCtrl" required [(ngModel)]="this.policy.Description">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+              <input matInput placeholder="Precio" type="number" formControlName="firstCtrl" required [(ngModel)]="this.policy.Price">
+              <span matPrefix>$&nbsp;</span>
+              <span matSuffix>.00</span>
+            </mat-form-field>
+          </p>
+          <p>
+
+            <mat-form-field> 
+                <input matInput [matDatepicker]="picker" placeholder="Inicio vigencia" formControlName="firstCtrl" [(ngModel)]="this.policy.StartDatePolicy" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </p>
+
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Defina la duracion de la poliza</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Duracion en meses" type="number"  formControlName="secondCtrl" required [(ngModel)]="this.policy.CoveragePeriod">
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Atras</button>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Escoja las coverturas</ng-template>
+          <mat-accordion>
+              <mat-expansion-panel [expanded]="panelOpenState" *ngFor= "let coverages of CoverageTypes">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                      {{coverages.Coverage}}
+                  </mat-panel-title>
+                  <mat-panel-description>
+                      Datos para la covertura
+                  </mat-panel-description>
+                  
+                </mat-expansion-panel-header> 
+          
+                <mat-card>
+                    <mat-form-field>
+                        <input max="10" min ="1"  type="number" matInput placeholder="Porcentaje minimo 1 max 10" [(ngModel)] = "PolicyCoverage.Percentage" [ngModelOptions]="{standalone: true}" >
+                      </mat-form-field>
+                      
+                      <button mat-raised-button color="primary" (click) = "addCoverage(coverages.Id)" >Agregar</button>
+                </mat-card>
+          
+                
+              </mat-expansion-panel>        
+            </mat-accordion>
+          <div>
+            <button mat-button matStepperPrevious>Atras</button>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
+        </form>
+      </mat-step>
+    
+        <mat-step [stepControl]="fourFormGroup">
+            <form [formGroup]="fourFormGroup">
+              <ng-template matStepLabel>Escoja el nivel de riesgo</ng-template>
+
+              <mat-radio-group aria-label="Select an option">
+                  <mat-radio-button *ngFor= "let risk of RiskTypes" value="1" (click) = "setRisk(risk.Id)" >{{risk.Name}}</mat-radio-button>
+                  
+                </mat-radio-group>
+             
+              <div>
+                <button mat-button matStepperPrevious>Atras</button>
+                <button mat-button matStepperNext>Siguiente</button>
+              </div>
+            </form>
+          </mat-step>
+        <mat-step>
+      <ng-template matStepLabel>Terminar</ng-template>
+      Has finalizado por favor hacer click en guardar.
+      <div>
+        <button mat-button matStepperPrevious>Atras</button>
+        <button mat-button (click)="Save()">Guardar</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
