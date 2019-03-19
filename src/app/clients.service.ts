@@ -1,39 +1,36 @@
 import { Injectable } from '@angular/core';
 import { RESOURCES } from './constants/Resources';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Policy } from './Entities/Policy';
 import { GlobalService } from './global.service';
 import { Observable } from 'rxjs';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Client } from './Entities/Client';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PoliciesService {
+export class ClientsService {
 
   private baseUrl  = RESOURCES.filter(obj => {
     return obj.Key === "UrlBase"
   })
 
-  private policiesUrl = this.baseUrl[0].Value + '/api/Policies';
+  private clientUrl = this.baseUrl[0].Value + '/api/clients';
 
   constructor(private http: HttpClient,
               private globalService : GlobalService) { }
 
-  getPolicies(): Observable<Policy[]>{   
+  getClients(): Observable<Client[]>{  
     
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', this.globalService.getToken().Token);
-    return this.http.get<Policy[]>(this.policiesUrl,{headers : headers});   
+    return this.http.get<Client[]>(this.clientUrl,{headers : headers});   
   }
 
-  savePolicy(policy:Policy):  Promise<Policy>{   
-    
+  saveClient(client:Client):  Promise<Client>{ 
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', this.globalService.getToken().Token);    
-    return this.http.post<Policy>(this.policiesUrl,policy,{headers : headers}).toPromise()
+    return this.http.post<Client>(this.clientUrl,client,{headers : headers}).toPromise()
     .then(res => { return res })  
     
   }
-
-
 }

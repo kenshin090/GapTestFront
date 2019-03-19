@@ -1,0 +1,9 @@
+<mat-form-field>
+  <mat-label>Clientes actuales</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let client of ActualClients" [value]="client.Id" (click)="SelectClient(client)">
+      {{client.Name}} {{client.LastName}} 
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<app-client-detail [Client] = Selected></app-client-detail>

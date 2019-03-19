@@ -58,6 +58,11 @@ import {
 } from '@angular/material';
 import { ListPoliciesComponent } from './list-policies/list-policies.component';
 import { NewPolicyComponent } from './new-policy/new-policy.component';
+import { ListClientComponent } from './list-client/list-client.component';
+import { NewClientComponent } from './new-client/new-client.component';
+import { ClientDetailComponent } from './client-detail/client-detail.component';
+import { SuccesClientComponent } from './succes-client/succes-client.component';
+import { SuccesPolicyComponent } from './succes-policy/succes-policy.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +73,12 @@ import { NewPolicyComponent } from './new-policy/new-policy.component';
     MainComponent,
     ClientComponent,
     ListPoliciesComponent,
-    NewPolicyComponent
+    NewPolicyComponent,    
+    ListClientComponent,
+    NewClientComponent,
+    ClientDetailComponent,
+    SuccesClientComponent,
+    SuccesPolicyComponent
   ],
   imports: [
     BrowserModule,

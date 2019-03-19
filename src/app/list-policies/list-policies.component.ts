@@ -16,8 +16,6 @@ export class ListPoliciesComponent implements OnInit {
   ActualPolicies : Policy[]
 
   ngOnInit() {
-    debugger;
-   
     this.policiesService.getPolicies().subscribe((response:Policy[]) => this.FillPolicies(response))
   }
 

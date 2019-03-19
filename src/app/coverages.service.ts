@@ -19,8 +19,7 @@ export class CoveragesService {
   constructor(private http: HttpClient,
               private globalService : GlobalService) { }
 
-  getCoverages(): Observable<CoverageType[]>{   
-    debugger;
+  getCoverages(): Observable<CoverageType[]>{  
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', this.globalService.getToken().Token);
     return this.http.get<CoverageType[]>(this.coveragesUrl,{headers : headers});   

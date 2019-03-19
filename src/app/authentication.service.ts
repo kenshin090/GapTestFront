@@ -24,9 +24,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   logIn(user: User): Observable<UserToken> {
- 
-   
-    debugger
+    
      return this.http.post<UserToken>(this.authUrl,user);
     
     

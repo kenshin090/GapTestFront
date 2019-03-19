@@ -1,0 +1,71 @@
+<div *ngIf="Client.Id !== undefined; else NoClients">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{Client.Name}}</mat-card-title>
+      <mat-card-subtitle>{{Client.LastName}}</mat-card-subtitle>
+    </mat-card-header>
+     <mat-card-content>
+
+        <mat-tab-group>
+            <mat-tab label="Datos Personales">
+                <p>
+                    Name : {{Client.Name}}
+                  </p>
+              <p>
+                Apellido : {{Client.LastName}}
+              </p>
+              <p>
+                Email : {{Client.Email}}
+              </p>
+              <p>
+                Direccion : {{Client.Address}}
+              </p>
+              <p>
+                Telefono : {{Client.Phone}}
+              </p>
+              <p>
+                Nui : {{Client.NUIP}}
+              </p>
+            </mat-tab>
+            <mat-tab label="Polizas"> 
+                <mat-accordion>
+                    <mat-expansion-panel *ngFor= "let policy of Client.Policies">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{policy.Policy.Name}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            {{policy.Policy.Description}}
+                        </mat-panel-description>
+                      </mat-expansion-panel-header> 
+                
+                      <mat-card>
+                          <mat-card-header>              
+                              <mat-card-title>Coverturas</mat-card-title>
+                              <mat-card-subtitle>Estas son las coverturas que contiene la poliza, Costo ${{policy.Policy.Price}}.00</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <mat-list>
+                                    <mat-list-item  *ngFor= "let Coverage of policy.Policy.Coverages"> {{Coverage.CoverageType.Coverage}} Porcentaje de covertura {{Coverage.Percentage}}0 %  </mat-list-item>
+                                    
+                                   </mat-list>
+                
+                            </mat-card-content>
+                      </mat-card>
+                
+                      
+                    </mat-expansion-panel>        
+                  </mat-accordion>
+            </mat-tab>
+          </mat-tab-group>
+        
+    </mat-card-content>    
+  </mat-card>
+ </div>   
+ <ng-template #NoClients>
+   <div>
+    <b>Seleccione un cliente.</b>
+   </div> 
+ </ng-template>
+ 

@@ -20,7 +20,7 @@ export class RisksService {
               private globalService : GlobalService) { }
 
   getRisks(): Observable<RiskType[]>{   
-    debugger;
+    
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', this.globalService.getToken().Token);
     return this.http.get<RiskType[]>(this.riskUrl,{headers : headers});   

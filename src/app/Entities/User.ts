@@ -1,4 +1,5 @@
 import { BuiltinMethod } from '@angular/compiler';
+import { UserPermission } from './UserPermission';
 
 export class User {
     
@@ -7,4 +8,6 @@ export class User {
     Id: number;
     Password: string;
     CreatorEmail: string;
+    Permissions : UserPermission[]
 }
+

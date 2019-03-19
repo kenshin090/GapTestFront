@@ -74,8 +74,7 @@ export class NewPolicyComponent implements OnInit {
     this.RiskTypes = risks;
   }
 
-  addCoverage(idCoverage: number){
-    debugger;
+  addCoverage(idCoverage: number){  
     if(this.policy.Coverages === undefined){
       this.policy.Coverages = []
     }
@@ -87,15 +86,15 @@ export class NewPolicyComponent implements OnInit {
     this.panelOpenState = !this.panelOpenState
   }
 
-  setRisk(idRisk: number){    
-    debugger;
+  setRisk(idRisk: number){   
+    
     this.policy.RiskTypeId=idRisk;
   }
 
   Save(){
-    debugger
+    
     this.policiesService.savePolicy(this.policy);
-    this.router.navigate(['/main'])
+    this.router.navigate(['main/successpolicy'])
 
   }
 
